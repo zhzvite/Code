@@ -14,7 +14,8 @@
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "code-runner.executorMap": {
-        "cpp": "cd $dir && clang++ $fileName -o $test.out && $dir$test.out"
+        "cpp": "cd $dir && clang++ -std=c++17 $fileName -o $test.out && $dir$test.out",
+        "python": "cd $dir && python3 $fileName"
     },
     "files.associations": {
         "__bit_reference": "cpp",
