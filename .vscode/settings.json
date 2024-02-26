@@ -71,7 +71,7 @@
     "workbench.editor.empty.hint": "hidden" ,//在写包含形如{{xxx}}的标签的html文档时，也对标签进行缩进（更美观）
     
 	"code-runner.executorMap": {
-    "cpp": "cd $dir && g++ $fileName -g -o $test.exe -std=c++11 && $dir$test.exe"
+    "cpp": "cd $dir && g++ $fileName -g -o $test.exe -std=c++17 && $dir$test.exe"
 	},
     "code-runner.runInTerminal": true,
     "files.associations": {
