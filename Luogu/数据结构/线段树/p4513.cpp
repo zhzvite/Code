@@ -1,4 +1,4 @@
-// 维护区间范围内的连续得分最大值
+//维护区间范围内的连续得分最大值
 #include <iostream>
 #include <algorithm>
 #include <cstring>
@@ -13,10 +13,10 @@ struct node
 int w[N];
 int n, m;
 void pushup(node &u, node &l, node &r)
-{                                         // 负责更新父节点
-    u.sum = l.sum + r.sum;                // 更新总和
-    u.lmax = max(l.lmax, l.sum + r.lmax); // 更新父节点的左最大值
-    u.rmax = max(r.rmax, r.sum + l.rmax); // 更新父节点的右最大值
+{ // 负责更新父节点
+    u.sum = l.sum + r.sum;//更新总和
+    u.lmax = max(l.lmax, l.sum + r.lmax);//更新父节点的左最大值
+    u.rmax = max(r.rmax, r.sum + l.rmax);//更新父节点的右最大值
     u.tmax = max(l.tmax, max(r.tmax, l.rmax + r.lmax));
 }
 void pushup(int u)

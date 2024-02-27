@@ -1,8 +1,6 @@
-.DS_Store
-.vscode
-.vscode/c_cpp_properties.json
-.vscode/launch.json
-.vscode/settings.json
-.vscode/tasks.json
-.out
-$test.exe
+*.DS_Store
+*.vscode
+*.out
+*.exe
+*.exe.dSYM
+
