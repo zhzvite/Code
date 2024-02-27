@@ -1,6 +1,9 @@
 *.DS_Store
-*.vscode
+.vscode/
 *.out
 *.exe
 *.exe.dSYM
+*.json
+test
 
+.vscode/tasks.json
