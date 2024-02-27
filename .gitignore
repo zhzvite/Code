@@ -5,5 +5,3 @@
 *.exe.dSYM
 *.json
 test
-
-.vscode/tasks.json
