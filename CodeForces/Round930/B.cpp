@@ -17,43 +17,46 @@ const int N = 2e5 + 10;
 int n, t;
 char a1[N], a2[N];
 char a[N];
-int cnt = 0;
+int cnt ;
+int res ;
 void find(int x,int y){
     if(x==1){
-        if (((a1[y + 1] == '1' && a2[y] == '1') || (a1[y + 1] == '0' ) )&& y + 1 <= n)
-        {
+        if((a1[y+1]=='0'||(a1[y+1]=='1'&&a2[y]=='1'))&& y+1<=n){
             a[cnt++] = a1[y + 1];
-            find(1, y + 1);
+            if(a1[y+1]==a2[y])
+                res++;
+            else
+                res = 1;
+            find(x, y + 1);
         }
-        if(y+1>n)
+        else if(y+1>n)
             {a[cnt++] = a2[y];
-        return;}
-        if((a1[y+1]=='1'&&a2[y]=='0')&&y+1<=n){
+                return;
+            }
+        else {
             for (int i = y; i <= n;i++)
                 a[y + 1] = a2[y];
             return;
         }
     }
-    
 }
-
 int main(){
     cin >> t;
     while(t--){
-        cnt = 1;
         cin >> n;
-        //cout << 1;
+        res = 1;
+        cnt = 2;
+        for (int i = 1; i <=n;i++)
+            cin >> a1[i];
         for (int i = 1; i <= n;i++)
-            {
-                cin >> a1[i];
-            }
-        for (int i = 1; i <= n;i++)
-            {
-                cin >> a2[i];
-            }
-        //cout << 1;
-        a[cnt++] = a1[1];
+            cin >> a2[i];
+        a[1] = a1[1];
         find(1, 1);
-        
+        for (int i = 1; i <= n+1 ;i++)
+            cout << a[i];
+        cout << a2[n];
+        cout << endl;
+        //cout << cnt << endl;
+        cout << res << endl;
     }
 }
