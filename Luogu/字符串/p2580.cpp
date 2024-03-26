@@ -27,6 +27,7 @@ int main(){
 }
 */
 //trie板子
+
 #include<iostream>
 using namespace std;
 const int N=1e6+1e6;
