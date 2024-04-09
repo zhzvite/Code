@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 typedef long long ll;
-const int N = 3e6 + 10;
+const int N = 2000010;
 int tot = 1, last = 1;
 struct Node
 {
@@ -12,6 +12,7 @@ struct Node
 } node[N];
 char str[N];
 ll f[N], ans;
+int e[N], ne[N], h[N], idx;
 void extend(int c)
 {
     int p = last, np = last = ++tot;
@@ -37,29 +38,28 @@ void extend(int c)
         }
     }
 }
-
+void add(int a, int b)
+{
+    e[idx] = b, ne[idx] = h[a], h[a] = idx++;
+}
+void dfs(int u)
+{
+    for (int i = h[u]; ~i; i = ne[i])
+    {
+        dfs(e[i]);
+        f[u] += f[e[i]];
+    }
+    if (f[u] > 1)
+        ans = max(ans, f[u] * node[u].len);
+}
 int main()
 {
-    int n;
-    cin >> n;
-
-    while (n--)
-    {
-        for (int i = 1; i <= tot; i++)
-        {
-            f[i] = 0;
-            node[i].fa = 0;
-            node[i].len = 0;
-            memset(node[i].ch, 0, sizeof node[i].ch);
-        }
-        ans = 0;
-        tot = 1, last = 1;
-
-        scanf("%s", str);
-        for (int i = 0; str[i]; i++)
-            extend(str[i] - 'a');
-        for (int i = 2; i <= tot; i++)
-            ans += node[i].len - node[node[i].fa].len;
-        cout << ans << endl;
-    }
+    scanf("%s", str);
+    for (int i = 0; str[i]; i++)
+        extend(str[i] - 'a');
+    memset(h, -1, sizeof h);
+    for (int i = 2; i <= tot; i++)
+        add(node[i].fa, i);
+    dfs(1);
+    cout << ans;
 }
