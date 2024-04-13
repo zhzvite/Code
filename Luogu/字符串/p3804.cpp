@@ -1,10 +1,9 @@
 #include <iostream>
-#include <algorithm>
 #include <cstring>
 using namespace std;
 typedef long long ll;
 const int N = 2000010;
-int tot = 1, last = 1;
+int tot = 1, last = 1,e[N], ne[N], h[N], idx;
 struct Node
 {
     int len, fa;
@@ -12,9 +11,7 @@ struct Node
 } node[N];
 char str[N];
 ll f[N], ans;
-int e[N], ne[N], h[N], idx;
-void extend(int c)
-{
+void extend(int c){
     int p = last, np = last = ++tot;
     node[np].len = node[p].len + 1;
     f[tot] = 1;
@@ -27,8 +24,7 @@ void extend(int c)
         int q = node[p].ch[c];
         if (node[q].len == node[p].len + 1)
             node[np].fa = q;
-        else
-        {
+        else{
             int copy = ++tot;
             node[copy] = node[q];
             node[copy].len = node[p].len + 1;
@@ -38,12 +34,10 @@ void extend(int c)
         }
     }
 }
-void add(int a, int b)
-{
+void add(int a, int b){
     e[idx] = b, ne[idx] = h[a], h[a] = idx++;
 }
-void dfs(int u)
-{
+void dfs(int u){
     for (int i = h[u]; ~i; i = ne[i])
     {
         dfs(e[i]);
@@ -52,8 +46,7 @@ void dfs(int u)
     if (f[u] > 1)
         ans = max(ans, f[u] * node[u].len);
 }
-int main()
-{
+int main(){
     scanf("%s", str);
     for (int i = 0; str[i]; i++)
         extend(str[i] - 'a');
@@ -62,4 +55,5 @@ int main()
         add(node[i].fa, i);
     dfs(1);
     cout << ans;
+    return 0;
 }
